@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ac.kopo.mapper.MemberMapper">
+	<insert id="join" parameterType="user">
+		insert into user
+		(user_id, passwd, email, user_name, nick, phone, gender, profile, birth_date)
+		values
+		(#{userId}, #{passwd}, #{email}, #{userName}, #{nick}, #{phone}, #{gender}, #{profile}, #{birthDate})
+	</insert>
+	
+	<select id="login" parameterType="user" resultType="user">
+		select * from user where user_id = #{userId} and passwd=#{passwd} and status = 1
+	</select>
+	
+	<select id="doubleCheck" resultType="user">
+		select * from user where user_id = #{userId}
+	</select>
+	
+	<update id="userUpdate" parameterType="user">
+		update user set passwd=#{passwd}, email=#{email}, nick=#{nick} where user_id = #{userId}
+	</update>
+	
+	<select id="nickCheck" resultType="user">
+		select * from user where nick = #{nick}
+	</select>
+	
+	<update id="profileUpdate" parameterType="user">
+		update user set profile = #{profile} where user_id = #{userId}
+	</update>
+	
+	<select id="getUser" resultType="user">
+		select * from user where user_id = #{userId}
+	</select>
+	
+	<update id="deleteUser">
+		update user set status = 0 where user_id = #{userId}
+	</update>
+</mapper>

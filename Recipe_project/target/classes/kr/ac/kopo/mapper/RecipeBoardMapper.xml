@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ac.kopo.mapper.RecipeBoardMapper">
+
+	<sql id="search">
+	  	<if test="type=='writer'">
+	  		where writer like concat('%',#{keyword},'%')
+	  	</if>
+	  	<if test="type=='title'">
+	  		where title like concat('%',#{keyword},'%')
+	  	</if>
+	  	<if test="type=='content'">
+	  		where content like concat('%',#{keyword},'%')
+	  	</if>
+	</sql>
+	
+	<select id="list" resultMap="recipeWithProfile" parameterType="criteria">
+		select r.*, u.profile
+		from recipe_board r
+		join user u on r.user_id = u.user_id
+		<include refid="search"/>
+		<if test="type != null">
+	    	and available = 1
+		</if>
+		<if test="type == null">
+		    where available = 1
+		</if>
+		order by recipe_id desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<resultMap type="recipeBoard" id="recipeWithProfile">
+		<id property="recipeId" column="recipe_id"/>
+		<result property="userId" column="user_id"/>
+	    <result property="title" column="title"/>
+	    <result property="content" column="content"/>
+	    <result property="writer" column="writer"/>
+	    <result property="createDate" column="create_date"/>
+	    <result property="updateDate" column="update_date"/>
+	    <result property="count" column="count"/>
+	    <result property="available" column="available"/>
+	    <result property="profile" column="profile"/>
+	</resultMap>
+	
+	<insert id="insert" parameterType="recipeBoard">
+		insert into recipe_board
+		(user_id, title, content, writer)
+		values
+		(#{userId}, #{title}, #{content}, #{writer})
+	</insert>
+	
+	<select id="totalCount" parameterType="criteria">
+		select count(*) from recipe_board
+		<include refid="search"/>
+	</select>
+	
+	<select id="getBoard" resultType="recipeBoard">
+		select * from recipe_board where recipe_id = #{recipeId}
+	</select>
+	
+	<update id="countUp">
+		update recipe_board set count = count + 1 where recipe_id = #{recipeId}
+	</update>
+	
+	<update id="modify" parameterType="recipeBoard">
+		update recipe_board set title=#{title}, content=#{content}, update_date = #{updateDate} where recipe_id = #{recipeId}
+	</update>
+	
+	<update id="remove">
+		update recipe_board set available = 0 where recipe_id = #{recipeId} 
+	</update>
+	
+</mapper>
