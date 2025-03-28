@@ -14,7 +14,7 @@
 	  $(document).ready(function(){
 	  	$("button").on("click", function(e){
 	  		var formData=$("#frm");
-	  		var btn=$(this).data("btn"); // data-btn="list"
+	  		var btn=$(this).data("btn");
 	  		if(btn=='modify'){
 	  			formData.attr("action", "${cPath}/board/modify");
 	  		}else if(btn=='remove'){

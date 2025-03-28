@@ -9,13 +9,13 @@ public class ReviewPageMaker {
 	
 	private int startPage; // 시작 페이지 번호
 	
-	private int endPage; // 끝 페이지 번호(게시글 수에 따라 조정이 되어야 함)
+	private int endPage; // 끝 페이지 번호
 	
 	private boolean prev; // 이전버튼(true, false)을 생성할 것인가?
 	
 	private boolean next; // 다음버튼(true, false)을 생성할 것인가?
 	
-	private int displayPageNum=5; // 1 2 3 4 5 6 7 8 9 10(하단에 페이지 버튼을 몇개씩 보여줄 것인가?)
+	private int displayPageNum=5; // 하단에 페이지 버튼을 몇개씩 보여줄 것인가?
 	
 	public ReviewCriteria getRcri() {
 		return rcri;

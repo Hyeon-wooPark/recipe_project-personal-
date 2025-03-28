@@ -12,8 +12,6 @@
   <jsp:include page="../main/header.jsp"></jsp:include>
   <script type="text/javascript">
      $(document).ready(function(){
-    	
-    	 
     	$("#regBtn").click(function(){
     		location.href="${cPath}/board/insert";
     	});
@@ -23,7 +21,7 @@
     		e.preventDefault(); // a tag의 기능을 막는 부분
     		var page=$(this).attr("href"); // 페이지번호
     		pageFrm.find("#page").val(page);
-    		pageFrm.submit(); // /sp08/board/list   		
+    		pageFrm.submit();    		
     	});    	
     	// 상세보기 클릭시 이동 하기
     	$(".move").on("click", function(e){
@@ -133,7 +131,6 @@
       </div>
       <!-- END -->
       <form id="pageFrm" action="${cPath}/board/list" method="post">
-         <!-- 게시물 번호(idx)추가 -->         
          <input type="hidden" id="page" name="page" value="${pageMaker.cri.page}"/>
          <input type="hidden" name="perPageNum" value="${pageMaker.cri.perPageNum}"/>
          <input type="hidden" name="type" value="${pageMaker.cri.type}">

@@ -109,7 +109,6 @@ public class UserController {
             return "redirect:profile";
 		}
 		
-	    // 프로필 업데이트 서비스 호출
 	    userService.profileUpdate(user, file, request, session);
 	    
 	    rttr.addFlashAttribute("msgType", "성공 메세지");

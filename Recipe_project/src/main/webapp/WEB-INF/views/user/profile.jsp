@@ -28,7 +28,6 @@
 		location.href="<c:url value='/'/>"
 	}
 	
-	
 </script>
 </head>
 <body>
@@ -71,7 +70,6 @@
 				</form>
 			</div>
 		</div>
-		<!-- 다이얼로그(모달창) -->
 	    <!-- Modal -->
 		<div id="myMessage" class="modal fade" role="dialog" tabindex="-1" aria-hidden="true">
 		  <div class="modal-dialog">

@@ -43,7 +43,7 @@ public class Criteria {
 	}
 	// 현재 페이지의 게시글의 시작번호
 	public int getPageStart() {    // 1page   2page   3page
-		return (page-1)*perPageNum;// 0~	  10~     20~  : limit 0,10(10에서 mysql은 1을 뺌 그래서 0~9까지 10개 구해지고 우리가 아는 개념과 차이가 있을 뿐 같음)
+		return (page-1)*perPageNum;// 0~	  10~     20~  : limit 0,10
 	}
 	
 }

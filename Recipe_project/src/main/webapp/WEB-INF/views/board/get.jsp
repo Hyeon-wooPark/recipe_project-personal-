@@ -15,7 +15,7 @@
     	$("button").on("click", function(e){
     		let formData=$("#frm");
     		let replyData = $("#com");
-    		let btn=$(this).data("btn"); // data-btn="list"
+    		let btn=$(this).data("btn");
     		if(btn=='modify'){
     			formData.attr("action", "${cPath}/board/modify");
     		}else if(btn=='list'){
@@ -32,10 +32,11 @@
     	var pageFrm=$("#pageFrm");
     	$(".page-item a").on("click", function(e){
     		e.preventDefault(); // a tag의 기능을 막는 부분
-    		var page=$(this).attr("href"); // 페이지번호
+    		var page=$(this).attr("href");
     		pageFrm.find("#rpage").val(page);
     		pageFrm.submit();   		
     	});
+    	
     });
   </script>
 </head>
@@ -114,11 +115,17 @@
   </div>
   <div class="list-group list-group-flush">
   	  <h1>댓글 ${rpageMaker.totalCount}개</h1>
-      <c:forEach var="vo" items="${list}">
+      <c:forEach var="value" items="${list}">
         <div class="list-group-item d-flex flex-row align-items-center">
-          <h6 class="mb-1 me-3">${vo.viewWriter}</h6>
-          <p class="mb-1 flex-grow-1 text-start"><c:out value="${vo.comment}"/></p>
-          <small class="text-muted">${vo.createComment}</small>
+          <h6 class="mb-1 me-3">${value.viewWriter}</h6>
+          <p class="mb-1 flex-grow-1 text-start"><c:out value="${value.comment}"/></p>
+          <small class="text-muted">${value.createComment}</small>
+          <c:if test="${mvo.nick eq value.viewWriter}">
+          	<span class="btn-group">
+		    	<button type="button" id="update" class="btn btn-link p-0 ms-1">수정</button>
+		    	<button type="button" class="btn btn-link p-0 ms-1">삭제</button>
+		  	</span>
+          </c:if>
         </div>
       </c:forEach>
   </div>
@@ -147,7 +154,6 @@
    </div>
    <!-- END -->
    <form id="pageFrm" action="${cPath}/board/getBoard" method="post">
-      <!-- 게시물 번호(idx)추가 -->
       <input type="hidden" name="recipeId" value="<c:out value='${vo.recipeId}'/>"/>         
       <input type="hidden" name="page" value="<c:out value='${cri.page}'/>"/>
       <input type="hidden" name="perPageNum" value="<c:out value='${cri.perPageNum}'/>"/>
