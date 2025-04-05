@@ -15,6 +15,7 @@
     	$("#regBtn").click(function(){
     		location.href="${cPath}/board/insert";
     	});
+    	
     	//페이지 번호 클릭시 이동 하기
     	var pageFrm=$("#pageFrm");
     	$(".page-item a").on("click", function(e){
@@ -43,7 +44,6 @@
   
   <h1>레시피 게시판</h1>
   <div class="card">
-    
     <div class="card-body">
       <table class="table table-bordered table-hover">
         <thead>

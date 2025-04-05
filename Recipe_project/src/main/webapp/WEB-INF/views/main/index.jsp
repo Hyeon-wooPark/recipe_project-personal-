@@ -42,13 +42,7 @@
 		          </ul>
 		        </li>
 	            <li class="nav-item">
-	                <a class="nav-link" href="#">Link3</a>
-	            </li>
-	            <li class="nav-item">
-	                <a class="nav-link" href="#">Link4</a>
-	            </li>
-	            <li class="nav-item">
-	                <a class="nav-link disabled" href="#">Disabled</a>
+	                <a class="nav-link" href="#">문의사항</a>
 	            </li>
         	</ul>
 		</div>

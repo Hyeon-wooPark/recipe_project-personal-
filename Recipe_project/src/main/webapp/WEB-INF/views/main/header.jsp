@@ -14,6 +14,19 @@
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
 	<link href="https://fonts.cdnfonts.com/css/noto-sans-kr" rel="stylesheet">
 	<link rel="stylesheet" href="${cPath}/resources/css/header.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			function updateTime() {
+		      const now = new Date();
+		      const timeStr = now.toLocaleTimeString(); 
+		      $('#clock').text(timeStr); 
+		    }
+
+		    setInterval(updateTime, 1000);
+		    updateTime();
+		})
+	</script>
 </head>
 <body>
 	<header class="blog-header py-3">
@@ -24,6 +37,7 @@
       <div class="col-4 text-center">
         <h1><a class="blog-header-logo text-dark" href="${cPath}/">오늘의 식단</a></h1>
       </div>
+      
       <div class="col-4 d-flex justify-content-end align-items-center">
       	<c:if test="${empty mvo}">
       		<a class="btn btn-sm btn-outline-primary" href="${cPath}/user/login">로그인</a>
@@ -38,7 +52,7 @@
         			<img src="${cPath}/resources/upload/${mvo.profile}" alt="프로필 사진" class="rounded-circle me-3" width="50" height="50">
         		</c:if>
         		<br>
-		        <h5>${mvo.nick}님</h5>
+		        <h5 class="me-2 mb-0">${mvo.nick}님</h5>
 		        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
 					<span class="visually-hidden"></span>
 				</button>
@@ -51,6 +65,12 @@
 				</ul>
 		    </div>      		
         </c:if>
+      </div>
+      
+    </div>
+    <div class="row">
+      <div class="col text-center mt-2">
+        <h2 class="fs-5 mb-0 fw-bold"><span id="clock"></span></h2>
       </div>
     </div>
   </header>
