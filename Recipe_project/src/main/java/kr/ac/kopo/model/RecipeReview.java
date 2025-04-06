@@ -17,6 +17,8 @@ public class RecipeReview {
 	private LocalDate updateComment;
 	
 	private int viewAvailable;
+	
+	private String profile;
 
 	public int getReviewId() {
 		return reviewId;
@@ -72,6 +74,14 @@ public class RecipeReview {
 
 	public void setViewAvailable(int viewAvailable) {
 		this.viewAvailable = viewAvailable;
+	}
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
 	
 	

@@ -125,7 +125,13 @@
         <div class="list-group-item d-flex flex-column mb-3">
           <div class="d-flex flex-row align-items-center">
 	          <h6 class="mb-1 me-3">
-	          	<img src="${cPath}/resources/image/person.png" alt="프로필 사진" class="rounded-circle me-3" width="20" height="20">${value.viewWriter}
+	          	<c:if test="${value.profile eq ''}">
+	          		<img src="${cPath}/resources/image/person.png" alt="프로필 사진" class="rounded-circle" width="20" height="20">
+	          	</c:if>
+	          	<c:if test="${value.profile ne ''}">
+	          		<img src="${cPath}/resources/upload/${value.profile}" alt="프로필 사진" class="rounded-circle" width="20" height="20">
+	          	</c:if>
+	          	${value.viewWriter}
 	          </h6>
 	          <p class="mb-1 flex-grow-1 text-start"><c:out value="${value.comment}"/></p>
 	          <small class="text-muted">${value.createComment}</small>
