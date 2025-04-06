@@ -12,6 +12,7 @@
   <jsp:include page="../main/header.jsp"></jsp:include>
   <script type="text/javascript">
     $(document).ready(function(){
+    	// 여기서 해결
     	$("button").on("click", function(e){
     		let formData=$("#frm");
     		let replyData = $("#com");
@@ -24,6 +25,11 @@
     		}else if(btn=='reply') {
     			replyData.attr("action", "${cPath}/review/insert");
     			replyData.submit();
+    			return;
+    		} else if(btn=='update') {
+    			let id = $(this).data("id");
+    			console.log("확인: " + id)
+    			$("#updateForm-" + id).toggleClass("d-none");
     			return;
     		}
     		formData.submit();    		
@@ -116,16 +122,28 @@
   <div class="list-group list-group-flush">
   	  <h1>댓글 ${rpageMaker.totalCount}개</h1>
       <c:forEach var="value" items="${list}">
-        <div class="list-group-item d-flex flex-row align-items-center">
-          <h6 class="mb-1 me-3">${value.viewWriter}</h6>
-          <p class="mb-1 flex-grow-1 text-start"><c:out value="${value.comment}"/></p>
-          <small class="text-muted">${value.createComment}</small>
-          <c:if test="${mvo.nick eq value.viewWriter}">
-          	<span class="btn-group">
-		    	<button type="button" id="update" class="btn btn-link p-0 ms-1">수정</button>
-		    	<button type="button" class="btn btn-link p-0 ms-1">삭제</button>
-		  	</span>
-          </c:if>
+        <div class="list-group-item d-flex flex-column mb-3">
+          <div class="d-flex flex-row align-items-center">
+	          <h6 class="mb-1 me-3">
+	          	<img src="${cPath}/resources/image/person.png" alt="프로필 사진" class="rounded-circle me-3" width="20" height="20">${value.viewWriter}
+	          </h6>
+	          <p class="mb-1 flex-grow-1 text-start"><c:out value="${value.comment}"/></p>
+	          <small class="text-muted">${value.createComment}</small>
+	          <c:if test="${mvo.nick eq value.viewWriter}">
+	          	<span class="btn-group">
+			    	<button type="button" class="btn btn-link p-0 ms-1" data-btn="update" data-id="${value.reviewId}">수정</button>
+			    	<button type="button" class="btn btn-link p-0 ms-1">삭제</button>
+			  	</span>
+	          </c:if>
+          </div>
+          <form class="mt-3 d-none" id="updateForm-${value.reviewId}">
+	          <div class="row mb-2">
+	              <textarea class="form-control" name="comment" rows="3">${value.comment}</textarea>
+	          </div>
+	          <div class="text-end">
+	              <button type="button" class="btn btn-primary btn-sm">수정</button>
+	          </div>
+	      </form>  
         </div>
       </c:forEach>
   </div>
