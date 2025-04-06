@@ -17,6 +17,7 @@
     		let formData=$("#frm");
     		let replyData = $("#com");
     		let btn=$(this).data("btn");
+    		
     		if(btn=='modify'){
     			formData.attr("action", "${cPath}/board/modify");
     		}else if(btn=='list'){
@@ -28,9 +29,12 @@
     			return;
     		} else if(btn=='update') {
     			let id = $(this).data("id");
-    			console.log("확인: " + id)
     			$("#updateForm-" + id).toggleClass("d-none");
     			return;
+    		} else if(btn=='updateReview') {
+    			let rId = $("#reviewId").val();
+    		    $("#updateForm-" + rId).submit();
+    		    return;
     		}
     		formData.submit();    		
     	});
@@ -142,13 +146,19 @@
 			  	</span>
 	          </c:if>
           </div>
-          <form class="mt-3 d-none" id="updateForm-${value.reviewId}">
+          <form class="mt-3 d-none" id="updateForm-${value.reviewId}" action="${cPath}/review/update" method="post">
+          	  <input type="hidden" id="reviewId" name="reviewId" value="${value.reviewId}">
 	          <div class="row mb-2">
 	              <textarea class="form-control" name="comment" rows="3">${value.comment}</textarea>
 	          </div>
 	          <div class="text-end">
-	              <button type="button" class="btn btn-primary btn-sm">수정</button>
+	              <button type="button" class="btn btn-primary btn-sm" data-btn="updateReview">수정</button>
 	          </div>
+	          <input type="hidden" id="recipeId" name="recipeId" value="<c:out value='${vo.recipeId}'/>"/> 
+	          <input type="hidden" name="page" value="<c:out value='${cri.page}'/>"/>
+	          <input type="hidden" name="perPageNum" value="<c:out value='${cri.perPageNum}'/>"/>
+	          <input type="hidden" name="type" value="<c:out value='${cri.type}'/>"/>
+	          <input type="hidden" name="keyword" value="<c:out value='${cri.keyword}'/>"/>
 	      </form>  
         </div>
       </c:forEach>

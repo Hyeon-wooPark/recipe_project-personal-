@@ -30,4 +30,9 @@ public class RecipeReviewServiceImpl implements RecipeReviewService {
 		return reviewMapper.totalCount(recipeId, rcri);
 	}
 
+	@Override
+	public void update(RecipeReview vo) {
+		reviewMapper.update(vo);
+	}
+
 }

@@ -15,4 +15,5 @@ public interface RecipeReviewMapper {
 	
 	public int totalCount(@Param("recipeId") int recipeId, @Param("rcri") ReviewCriteria rcri);
 	
+	public void update(RecipeReview vo);
 }

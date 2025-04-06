@@ -38,4 +38,8 @@
 		where recipe_id = #{recipeId}
 	</select>
 	
+	<update id="update" parameterType="recipeReview">
+		update recipe_review set comment=#{comment} where review_id=#{reviewId}
+	</update>
+	
 </mapper>
