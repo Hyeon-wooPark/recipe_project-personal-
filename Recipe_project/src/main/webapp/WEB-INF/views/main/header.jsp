@@ -15,18 +15,7 @@
 	<link href="https://fonts.cdnfonts.com/css/noto-sans-kr" rel="stylesheet">
 	<link rel="stylesheet" href="${cPath}/resources/css/header.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			function updateTime() {
-		      const now = new Date();
-		      const timeStr = now.toLocaleTimeString(); 
-		      $('#clock').text(timeStr); 
-		    }
-
-		    setInterval(updateTime, 1000);
-		    updateTime();
-		})
-	</script>
+	<script src="${cPath}/resources/js/main/header.js"></script>
 </head>
 <body>
 	<header class="blog-header py-3">

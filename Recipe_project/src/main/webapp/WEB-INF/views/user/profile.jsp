@@ -12,23 +12,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link rel="stylesheet" href="${cPath}/resources/css/join.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<script type="text/javascript">
-	$(document).ready(() => {
-		if(${empty mvo}) {
-			alert("잘못된 접근입니다.")
-			location.href="<c:url value='/'/>"
-		}
-		if(${!empty msgType}) {
-			$("#messageType").attr("class", "modal-header bg-danger bg-opacity-25 text-white");
-			$("#myMessage").modal("show");
-		}
-	});
-	
-	function main() {
-		location.href="<c:url value='/'/>"
-	}
-	
+<script>
+	let cPath = "${cPath}";
+	let isEmptyMvo = ${empty mvo};
+	let msgType = "${msgType}";
 </script>
+<script src="${cPath}/resources/js/main/check.js"></script>
+<script src="${cPath}/resources/js/main/modal.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -65,13 +55,13 @@
 					<div class="d-flex gap-2">
 					    <button type="submit" class="btn btn-primary flex-fill">프로필 사진변경</button>
 					    <button type="reset" class="btn btn-danger flex-fill">초기화</button>
-					    <button type="button" class="btn btn-secondary flex-fill" onclick="main()">메인화면</button>
+					    <button type="button" class="btn btn-secondary flex-fill" onclick="location.href='<c:url value='/'/>'">메인화면</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	    <!-- Modal -->
-		<div id="myMessage" class="modal fade" role="dialog" tabindex="-1" aria-hidden="true">
+		<div id="myMessage" class="modal fade" role="dialog" tabindex="-1">
 		  <div class="modal-dialog">
 		    <!-- Modal content-->
 		    <div class="modal-content">

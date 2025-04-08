@@ -10,19 +10,10 @@
 <jsp:include page="../main/header.jsp"></jsp:include>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
-	$(document).ready(() => {
-		if(${empty mvo}) {
-			alert("잘못된 접근입니다.")
-			location.href="<c:url value='/'/>"
-		}
-	})
-	
-	function main() {
-		location.href="<c:url value='/'/>"
-	}
-	
-	
+	let cPath = "${cPath}";
+	let isEmptyMvo = ${empty mvo};
 </script>
+<script src="${cPath}/resources/js/main/check.js"></script>
 </head>
 <body>
 	<div class="container mt-5 p-4 border rounded shadow-lg bg-light">

@@ -12,43 +12,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link rel="stylesheet" href="${cPath}/resources/css/join.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script>
+	let cPath = "${cPath}";
+	let isEmptyMvo = ${empty mvo};
+</script>
+<script src="${cPath}/resources/js/main/check.js"></script>
+<script src="${cPath}/resources/js/user/update.js"></script>
 <script type="text/javascript">
-	$(document).ready(() => {
-		if(${empty mvo}) {
-			alert("잘못된 접근입니다.")
-			location.href="<c:url value='/'/>"
-		}
-		
-		$("#domainSelect").on("change", function () {
-			let selected = $(this).val();
-			if(selected) {
-				$("#domain").val(selected).prop("readonly", true);
-			} else {
-				$("#domain").val('').prop("readonly", false);
-			}
-		});
-		
-		$("#togglePassword1").on("click", function() {
-	        let passwordInput = $("#passwd1"); 
-	        let type = passwordInput.attr("type") === "password" ? "text" : "password"; 
-	        passwordInput.attr("type", type); 
-
-	        $(this).toggleClass("fa-eye fa-eye-slash");
-	    });
-		
-		$("#togglePassword2").on("click", function() {
-	        let passwordInput = $("#passwd2"); 
-	        let type = passwordInput.attr("type") === "password" ? "text" : "password"; 
-	        passwordInput.attr("type", type); 
-
-	        $(this).toggleClass("fa-eye fa-eye-slash");
-	    });
-	});
-	
-	function main() {
-		location.href="<c:url value='/'/>"
-	}
-	
 	function passCheck() {
 		let passwd1 = $("#passwd1").val();
 		let passwd2 = $("#passwd2").val();
@@ -236,7 +206,7 @@
 					<div class="d-flex gap-2">
 					    <button type="button" class="btn btn-primary flex-fill" onclick="memUpdate()">회원정보수정</button>
 					    <button type="reset" class="btn btn-danger flex-fill">초기화</button>
-					    <button type="button" class="btn btn-secondary flex-fill" onclick="main()">메인화면</button>
+					    <button type="button" class="btn btn-secondary flex-fill" onclick="location.href='<c:url value='/'/>'">메인화면</button>
 					</div>
 				</form>
 			</div>

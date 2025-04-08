@@ -11,51 +11,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link rel="stylesheet" href="${cPath}/resources/css/join.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script src="${cPath}/resources/js/user/join.js"></script>
 <script type="text/javascript">
-	$(document).ready(() => {
-		$("#domainSelect").on("change", function () {
-			let selected = $(this).val();
-			if(selected) {
-				$("#domain").val(selected).prop("readonly", true);
-			} else {
-				$("#domain").val('').prop("readonly", false);
-			}
-		});
-		
-		$("#numInput1").on("input", function(){
-	        if ($(this).val().length > 6) {
-	            $(this).val($(this).val().slice(0, 6));
-	        }
-	    });
-		
-		$("#numInput2").on("input", function(){
-	        if ($(this).val().length > 1) {
-	            $(this).val($(this).val().slice(0, 1));
-	        }
-	    });
-		
-		$("#numInput3").on("input", function() {
-			if ($(this).val().length > 11) {
-				$(this).val($(this).val().slice(0, 11));
-			}
-		})
-		
-		$("#togglePassword1").on("click", function() {
-	        let passwordInput = $("#passwd1"); 
-	        let type = passwordInput.attr("type") === "password" ? "text" : "password"; 
-	        passwordInput.attr("type", type); 
-
-	        $(this).toggleClass("fa-eye fa-eye-slash");
-	    });
-		
-		$("#togglePassword2").on("click", function() {
-	        let passwordInput = $("#passwd2"); 
-	        let type = passwordInput.attr("type") === "password" ? "text" : "password"; 
-	        passwordInput.attr("type", type); 
-
-	        $(this).toggleClass("fa-eye fa-eye-slash");
-	    });
-	});
 	function doubleCheck() {
 		let id = $("#id").val();
 		$.ajax({
@@ -81,10 +38,7 @@
 	function abled() {
 		$("#checkButton").prop("disabled", false);
 	}
-	function main() {
-		location.href="<c:url value='/'/>"
-	}
-	
+
 	function passCheck() {
 		let passwd1 = $("#passwd1").val();
 		let passwd2 = $("#passwd2").val();
@@ -317,7 +271,7 @@
 					<div class="d-flex gap-2">
 					    <button type="button" class="btn btn-primary flex-fill" onclick="join()">회원가입</button>
 					    <button type="reset" class="btn btn-danger flex-fill">초기화</button>
-					    <button type="button" class="btn btn-secondary flex-fill" onclick="main()">메인화면</button>
+					    <button type="button" class="btn btn-secondary flex-fill" onclick="location.href='<c:url value='/'/>'">메인화면</button>
 					</div>
 				</form>
 			</div>

@@ -14,13 +14,9 @@
 <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-	$(document).ready(() => {
-		if(${!empty msgType}) {
-			$("#messageType").attr("class", "modal-header bg-danger bg-opacity-25 text-white");
-			$("#myMessage").modal("show");
-		}
-	})
+    let msgType = "${msgType}";
 </script>
+<script src="${cPath}/resources/js/main/modal.js"></script>
 </head>
 <body>
 	<nav>
@@ -82,7 +78,7 @@
 			</div>
 		</div>
 	</section>
-<div id="myMessage" class="modal fade" role="dialog" tabindex="-1" aria-hidden="true">
+<div id="myMessage" class="modal fade" role="dialog" tabindex="-1">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
@@ -99,7 +95,7 @@
     </div>
   </div>
 </div>
-<script src="${cPath}/resources/js/swiper.js"></script>
+<script src="${cPath}/resources/js/main/swiper.js"></script>
 <jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

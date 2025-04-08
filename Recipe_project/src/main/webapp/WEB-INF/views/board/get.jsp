@@ -10,50 +10,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <jsp:include page="../main/header.jsp"></jsp:include>
-  <script type="text/javascript">
-    $(document).ready(function(){
-    	// 여기서 해결
-    	$("button").on("click", function(e){
-    		let formData=$("#frm");
-    		let replyData = $("#com");
-    		let btn=$(this).data("btn");
-    		
-    		if(btn=='modify'){
-    			formData.attr("action", "${cPath}/board/modify");
-    		}else if(btn=='list'){
-    			formData.find("#recipeId").remove();
-    			formData.attr("action", "${cPath}/board/list");
-    		}else if(btn=='reply') {
-    			replyData.attr("action", "${cPath}/review/insert");
-    			replyData.submit();
-    			return;
-    		} else if(btn=='update') {
-    			let id = $(this).data("id");
-    			$("#updateForm-" + id).toggleClass("d-none");
-    			return;
-    		} else if(btn=='updateReview') {
-    			let rId = $("#reviewId").val();
-    		    $("#updateForm-" + rId).submit();
-    		    return;
-    		}
-    		formData.submit();    		
-    	});
-    	
-    	var pageFrm=$("#pageFrm");
-    	$(".page-item a").on("click", function(e){
-    		e.preventDefault(); // a tag의 기능을 막는 부분
-    		var page=$(this).attr("href");
-    		pageFrm.find("#rpage").val(page);
-    		pageFrm.submit();   		
-    	});
-    	
-    });
+  <script>
+  	let cPath = "${cPath}";
   </script>
+  <script src="${cPath}/resources/js/board/get.js"></script>
 </head>
-<body>
- 
+<body> 
 <div class="container">
-  
   <h1>게시글</h1>
   <div class="card">
     <div class="card-body">
@@ -197,6 +160,5 @@
       <input type="hidden" name="rperPageNum" value="${rpageMaker.rcri.rperPageNum}"/>
    </form>
 </div>
-
 </body>
 </html>

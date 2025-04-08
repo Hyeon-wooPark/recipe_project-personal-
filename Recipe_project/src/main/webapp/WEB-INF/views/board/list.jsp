@@ -10,33 +10,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <jsp:include page="../main/header.jsp"></jsp:include>
-  <script type="text/javascript">
-     $(document).ready(function(){
-    	$("#regBtn").click(function(){
-    		location.href="${cPath}/board/insert";
-    	});
-    	
-    	//페이지 번호 클릭시 이동 하기
-    	var pageFrm=$("#pageFrm");
-    	$(".page-item a").on("click", function(e){
-    		e.preventDefault(); // a tag의 기능을 막는 부분
-    		var page=$(this).attr("href"); // 페이지번호
-    		pageFrm.find("#page").val(page);
-    		pageFrm.submit();    		
-    	});    	
-    	// 상세보기 클릭시 이동 하기
-    	$(".move").on("click", function(e){
-    		e.preventDefault(); // a tag의 기능을 막는 부분
-    		let recipeId=$(this).attr("href");
-    		let tag="<input type='hidden' name='recipeId' value='"+recipeId+"'/>";
-    		pageFrm.append(tag);
-    		pageFrm.attr("action","${cPath}/board/getBoard");
-    		pageFrm.attr("method","get");
-    		pageFrm.submit();
-    	});
-    	
-     });
+  <script>
+	let cPath = "${cPath}";
   </script>
+  <script src="${cPath}/resources/js/board/boardList.js"></script>
 </head>
 <body>
  
