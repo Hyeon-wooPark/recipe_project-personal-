@@ -13,6 +13,7 @@
 		<typeAlias type="kr.ac.kopo.model.Criteria" alias="criteria"/>
 		<typeAlias type="kr.ac.kopo.model.RecipeReview" alias="recipeReview"/>
 		<typeAlias type="kr.ac.kopo.model.ReviewCriteria" alias="reviewCriteria"/>
+		<typeAlias type="kr.ac.kopo.model.QueryBoard" alias="queryBoard"/>
 	</typeAliases>
 	
 </configuration>

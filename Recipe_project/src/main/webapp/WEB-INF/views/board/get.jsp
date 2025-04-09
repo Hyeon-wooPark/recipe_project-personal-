@@ -124,7 +124,7 @@
      </li>
    </c:if>      
    <!-- 페이지번호 처리 -->
-       <c:forEach var="pageNum" begin="${rpageMaker.startPage}" end="${rpageMaker.endPage}">
+  <c:forEach var="pageNum" begin="${rpageMaker.startPage}" end="${rpageMaker.endPage}">
        <li class="page-item ${rpageMaker.rcri.rpage==pageNum ? 'active' : ''}">
        	<a class="page-link" href="${pageNum}">${pageNum}</a>
        </li>
