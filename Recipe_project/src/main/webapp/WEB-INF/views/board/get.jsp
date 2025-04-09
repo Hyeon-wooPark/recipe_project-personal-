@@ -50,11 +50,7 @@
          </tr>
       </table>
       <form id="frm" method="get">
-          <input type="hidden" id="recipeId" name="recipeId" value="<c:out value='${vo.recipeId}'/>"/> 
-          <input type="hidden" name="page" value="<c:out value='${cri.page}'/>"/>
-          <input type="hidden" name="perPageNum" value="<c:out value='${cri.perPageNum}'/>"/>
-          <input type="hidden" name="type" value="<c:out value='${cri.type}'/>"/>
-          <input type="hidden" name="keyword" value="<c:out value='${cri.keyword}'/>"/>
+          <%@ include file="../hiddenFields.jspf" %>
       </form>
     </div>
   </div>
@@ -76,11 +72,7 @@
 				</div>
 	  		</div>
 	  		<input type="hidden" name="viewWriter" value="<c:out value='${mvo.nick}'/>"/>
-	  		<input type="hidden" id="recipeId" name="recipeId" value="<c:out value='${vo.recipeId}'/>"/> 
-            <input type="hidden" name="page" value="<c:out value='${cri.page}'/>"/>
-            <input type="hidden" name="perPageNum" value="<c:out value='${cri.perPageNum}'/>"/>
-            <input type="hidden" name="type" value="<c:out value='${cri.type}'/>"/>
-            <input type="hidden" name="keyword" value="<c:out value='${cri.keyword}'/>"/>
+            <%@ include file="../hiddenFields.jspf" %>
 	  		<input type="hidden" name="rpage" value="<c:out value='${rcri.rpage}'/>"/>
             <input type="hidden" name="rperPageNum" value="<c:out value='${rcri.rperPageNum}'/>"/>
 	  	</div>
@@ -117,11 +109,7 @@
 	          <div class="text-end">
 	              <button type="button" class="btn btn-primary btn-sm" data-btn="updateReview">수정</button>
 	          </div>
-	          <input type="hidden" id="recipeId" name="recipeId" value="<c:out value='${vo.recipeId}'/>"/> 
-	          <input type="hidden" name="page" value="<c:out value='${cri.page}'/>"/>
-	          <input type="hidden" name="perPageNum" value="<c:out value='${cri.perPageNum}'/>"/>
-	          <input type="hidden" name="type" value="<c:out value='${cri.type}'/>"/>
-	          <input type="hidden" name="keyword" value="<c:out value='${cri.keyword}'/>"/>
+	          <%@ include file="../hiddenFields.jspf" %>
 	      </form>  
         </div>
       </c:forEach>
@@ -151,11 +139,7 @@
    </div>
    <!-- END -->
    <form id="pageFrm" action="${cPath}/board/getBoard" method="post">
-      <input type="hidden" name="recipeId" value="<c:out value='${vo.recipeId}'/>"/>         
-      <input type="hidden" name="page" value="<c:out value='${cri.page}'/>"/>
-      <input type="hidden" name="perPageNum" value="<c:out value='${cri.perPageNum}'/>"/>
-      <input type="hidden" name="type" value="<c:out value='${cri.type}'/>"/>
-      <input type="hidden" name="keyword" value="<c:out value='${cri.keyword}'/>"/>
+      <%@ include file="../hiddenFields.jspf" %>
       <input type="hidden" id="rpage" name="rpage" value="${rpageMaker.rcri.rpage}"/>
       <input type="hidden" name="rperPageNum" value="${rpageMaker.rcri.rperPageNum}"/>
    </form>
