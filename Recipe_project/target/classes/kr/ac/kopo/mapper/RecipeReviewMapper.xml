@@ -13,7 +13,7 @@
 	</insert>
 	
 	<select id="list" resultMap="reviewWithProfile" parameterType="reviewCriteria">
-		select rr.review_id, rr.recipe_id, rr.comment, rr.view_writer, rr.create_comment, rr.update_comment, rr.view_available, u.profile 
+		select rr.review_id, rr.recipe_id, rr.comment, rr.view_writer, rr.create_comment, rr.update_comment, rr.view_available, rr.board_level, u.profile 
 		from recipe_review rr
 		join recipe_board rb on rr.recipe_id = rb.recipe_id
 		join user u on rb.user_id = u.user_id
@@ -30,6 +30,7 @@
 	    <result property="createComment" column="create_comment" />
 	    <result property="updateComment" column="update_comment" />
 	    <result property="viewAvailable" column="view_available" />
+	    <result property="boardLevel" column="board_level" />
 	    <result property="profile" column="profile" />
 	</resultMap>
 	
@@ -40,6 +41,10 @@
 	
 	<update id="update" parameterType="recipeReview">
 		update recipe_review set comment=#{comment} where review_id=#{reviewId}
+	</update>
+	
+	<update id="delete">
+		update recipe_review set view_available = 0 where review_id=#{reviewId}
 	</update>
 	
 </mapper>

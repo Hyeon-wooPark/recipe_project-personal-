@@ -22,6 +22,11 @@ $(document).ready(function(){
       let rId = $("#reviewId").val();
         $("#updateForm-" + rId).submit();
         return;
+    } else if(btn === 'delete') {
+      let id = $(this).data("id");
+      $("#deleteReviewId").val(id);
+      $("#deleteModal").modal("show");
+      return;
     }
     formData.submit();    		
   });

@@ -18,8 +18,7 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 	
 	@Override
 	public List<RecipeBoard> list(Criteria cri) {
-		List<RecipeBoard> list = boardMapper.list(cri);
-		return list;
+		return boardMapper.list(cri);
 	}
 
 	@Override

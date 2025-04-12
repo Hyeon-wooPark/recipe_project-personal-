@@ -81,37 +81,56 @@
   <div class="list-group list-group-flush">
   	  <h1>댓글 ${rpageMaker.totalCount}개</h1>
       <c:forEach var="value" items="${list}">
-        <div class="list-group-item d-flex flex-column mb-3">
-          <div class="d-flex flex-row align-items-center">
-	          <h6 class="mb-1 me-3">
-	          	<c:if test="${value.profile eq ''}">
-	          		<img src="${cPath}/resources/image/person.png" alt="프로필 사진" class="rounded-circle" width="20" height="20">
-	          	</c:if>
-	          	<c:if test="${value.profile ne ''}">
-	          		<img src="${cPath}/resources/upload/${value.profile}" alt="프로필 사진" class="rounded-circle" width="20" height="20">
-	          	</c:if>
-	          	${value.viewWriter}
-	          </h6>
-	          <p class="mb-1 flex-grow-1 text-start"><c:out value="${value.comment}"/></p>
-	          <small class="text-muted">${value.createComment}</small>
-	          <c:if test="${mvo.nick eq value.viewWriter}">
-	          	<span class="btn-group">
-			    	<button type="button" class="btn btn-link p-0 ms-1" data-btn="update" data-id="${value.reviewId}">수정</button>
-			    	<button type="button" class="btn btn-link p-0 ms-1">삭제</button>
-			  	</span>
-	          </c:if>
-          </div>
-          <form class="mt-3 d-none" id="updateForm-${value.reviewId}" action="${cPath}/review/update" method="post">
-          	  <input type="hidden" id="reviewId" name="reviewId" value="${value.reviewId}">
-	          <div class="row mb-2">
-	              <textarea class="form-control" name="comment" rows="3">${value.comment}</textarea>
-	          </div>
-	          <div class="text-end">
-	              <button type="button" class="btn btn-primary btn-sm" data-btn="updateReview">수정</button>
-	          </div>
-	          <%@ include file="../hiddenFields.jspf" %>
-	      </form>  
-        </div>
+      	<c:choose>
+      		<c:when test="${value.viewAvailable eq 0}">
+		      <div class="list-group-item d-flex flex-column mb-3">
+		        <div class="d-flex flex-row align-items-center">
+		          <p class="mb-1 flex-grow-1 text-start text-muted">삭제된 댓글입니다</p>
+		        </div>
+		      </div>
+		    </c:when>
+		    <c:otherwise>
+		        <div class="list-group-item d-flex flex-column mb-3">
+		          <div class="d-flex flex-row align-items-center">
+			          <h6 class="mb-1 me-3">
+			          	<c:if test="${value.profile eq ''}">
+			          		<img src="${cPath}/resources/image/person.png" alt="프로필 사진" class="rounded-circle" width="20" height="20">
+			          	</c:if>
+			          	<c:if test="${value.profile ne ''}">
+			          		<img src="${cPath}/resources/upload/${value.profile}" alt="프로필 사진" class="rounded-circle" width="20" height="20">
+			          	</c:if>
+			          	${value.viewWriter}
+			          </h6>
+			          <p class="mb-1 flex-grow-1 text-start"><c:out value="${value.comment}"/></p>
+			          <small class="text-muted">${value.createComment}</small>
+			          <c:if test="${mvo.nick eq value.viewWriter and value.viewAvailable ne 0}">
+			          	<span class="btn-group">
+					    	<button type="button" class="btn btn-link p-0 ms-1" data-btn="update" data-id="${value.reviewId}">수정</button>
+					    	<button type="button" class="btn btn-link p-0 ms-1" data-btn="delete" data-id="${value.reviewId}">삭제</button>
+					  	</span>
+			          </c:if>
+		          </div>
+		          <c:if test="${!empty mvo}">
+			          <div class="mt-2">
+					    <button type="button" class="btn btn-link p-0 text-decoration-none text-black" data-btn="subReply" data-id="${value.reviewId}">
+					      대댓글 ▼
+					    </button>
+					  </div>
+				  </c:if>
+				  <!-- 댓글 수정 버튼 toggle -->
+		          <form class="mt-3 d-none" id="updateForm-${value.reviewId}" action="${cPath}/review/update" method="post">
+		          	  <input type="hidden" id="reviewId" name="reviewId" value="${value.reviewId}">
+			          <div class="row mb-2">
+			              <textarea class="form-control" name="comment" rows="3">${value.comment}</textarea>
+			          </div>
+			          <div class="text-end">
+			              <button type="button" class="btn btn-primary btn-sm" data-btn="updateReview">수정</button>
+			          </div>
+			          <%@ include file="../hiddenFields.jspf" %>
+			      </form>  
+		        </div>
+	        </c:otherwise>
+        </c:choose>
       </c:forEach>
   </div>
   <!-- 페이징 START -->
@@ -143,6 +162,30 @@
       <input type="hidden" id="rpage" name="rpage" value="${rpageMaker.rcri.rpage}"/>
       <input type="hidden" name="rperPageNum" value="${rpageMaker.rcri.rperPageNum}"/>
    </form>
+</div>
+<!-- 삭제 확인 모달 -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <form id="deleteForm" method="post" action="${cPath}/review/delete">
+      	<%@ include file="../hiddenFields.jspf" %>
+        <input type="text" name="reviewId" id="deleteReviewId">
+        <input type="hidden" id="rpage" name="rpage" value="${rpageMaker.rcri.rpage}"/>
+      	<input type="hidden" name="rperPageNum" value="${rpageMaker.rcri.rperPageNum}"/>
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">댓글 삭제</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
+        </div>
+        <div class="modal-body">
+          정말 삭제하시겠습니까?
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-sm">예</button>
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">아니오</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 </body>
 </html>

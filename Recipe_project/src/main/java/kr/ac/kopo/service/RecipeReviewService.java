@@ -14,4 +14,6 @@ public interface RecipeReviewService {
 	public int totalCount(int recipeId, ReviewCriteria rcri);
 	
 	public void update(RecipeReview vo);
+	
+	public void delete(int reviewId);
 }

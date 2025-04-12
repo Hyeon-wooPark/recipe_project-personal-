@@ -18,6 +18,8 @@ public class RecipeReview {
 	
 	private int viewAvailable;
 	
+	private int boardLevel;
+	
 	private String profile;
 
 	public int getReviewId() {
@@ -74,6 +76,14 @@ public class RecipeReview {
 
 	public void setViewAvailable(int viewAvailable) {
 		this.viewAvailable = viewAvailable;
+	}
+
+	public int getBoardLevel() {
+		return boardLevel;
+	}
+
+	public void setBoardLevel(int boardLevel) {
+		this.boardLevel = boardLevel;
 	}
 
 	public String getProfile() {

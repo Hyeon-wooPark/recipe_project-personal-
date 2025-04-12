@@ -38,7 +38,7 @@
 		          </ul>
 		        </li>
 	            <li class="nav-item">
-	                <a class="nav-link" href="#">문의사항</a>
+	                <a class="nav-link" href="${cPath}/query/list">문의사항</a>
 	            </li>
         	</ul>
 		</div>

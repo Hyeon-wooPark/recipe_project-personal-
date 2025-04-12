@@ -40,4 +40,15 @@ public class RecipeReviewController {
 		rttr.addAttribute("keyword", cri.getKeyword());
 		return "redirect:/board/getBoard";
 	}
+	
+	@PostMapping("/delete")
+	public String delete(RecipeReview review, @ModelAttribute("cri") Criteria cri, @ModelAttribute("rcri") ReviewCriteria rcri, RedirectAttributes rttr) {
+		reviewService.delete(review.getReviewId());
+		rttr.addAttribute("recipeId" ,review.getRecipeId());
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		return "redirect:/board/getBoard";
+	}
 }

@@ -35,4 +35,9 @@ public class RecipeReviewServiceImpl implements RecipeReviewService {
 		reviewMapper.update(vo);
 	}
 
+	@Override
+	public void delete(int reviewId) {
+		reviewMapper.delete(reviewId);
+	}
+
 }
