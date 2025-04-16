@@ -18,4 +18,11 @@ public interface RecipeReviewMapper {
 	public void update(RecipeReview vo);
 	
 	public void delete(int reviewId);
+
+	public RecipeReview read(int parentId);
+	
+	public void updateGroupId(RecipeReview vo);
+	
+	public void seqUpdate(RecipeReview vo);
+	
 }

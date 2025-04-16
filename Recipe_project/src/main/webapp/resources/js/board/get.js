@@ -20,12 +20,20 @@ $(document).ready(function(){
       return;
     } else if(btn=='updateReview') {
       let rId = $("#reviewId").val();
-        $("#updateForm-" + rId).submit();
-        return;
-    } else if(btn === 'delete') {
+      $("#updateForm-" + rId).submit();
+      return;
+    } else if(btn == 'delete') {
       let id = $(this).data("id");
       $("#deleteReviewId").val(id);
       $("#deleteModal").modal("show");
+      return;
+    } else if(btn == 'subReply') {
+      let id = $(this).data("id");
+      $("#replyForm-" + id).toggleClass("d-none");
+      return;
+    } else if(btn == 'insertReview') {
+      let form = $(this).closest("form");
+      form.submit();
       return;
     }
     formData.submit();    		

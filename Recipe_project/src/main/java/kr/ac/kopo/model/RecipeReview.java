@@ -18,10 +18,14 @@ public class RecipeReview {
 	
 	private int viewAvailable;
 	
+	private int groupId;
+	
+	private int reviewSequence;
+	
 	private int boardLevel;
 	
 	private String profile;
-
+	
 	public int getReviewId() {
 		return reviewId;
 	}
@@ -78,6 +82,22 @@ public class RecipeReview {
 		this.viewAvailable = viewAvailable;
 	}
 
+	public int getGroupId() {
+		return groupId;
+	}
+
+	public void setGroupId(int groupId) {
+		this.groupId = groupId;
+	}
+
+	public int getReviewSequence() {
+		return reviewSequence;
+	}
+
+	public void setReviewSequence(int reviewSequence) {
+		this.reviewSequence = reviewSequence;
+	}
+
 	public int getBoardLevel() {
 		return boardLevel;
 	}
@@ -93,6 +113,5 @@ public class RecipeReview {
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
-	
-	
+
 }

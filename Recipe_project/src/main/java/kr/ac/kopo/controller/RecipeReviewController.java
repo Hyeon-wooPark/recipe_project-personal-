@@ -21,6 +21,7 @@ public class RecipeReviewController {
 	
 	@RequestMapping("/insert")
 	public String insert(RecipeReview review, @ModelAttribute("cri") Criteria cri, @ModelAttribute("rcri") ReviewCriteria rcri, RedirectAttributes rttr) {
+		
 		reviewService.insert(review);
 		rttr.addAttribute("recipeId" ,review.getRecipeId());
 		rttr.addAttribute("page", cri.getPage());

@@ -127,6 +127,29 @@
 			              <button type="button" class="btn btn-primary btn-sm" data-btn="updateReview">수정</button>
 			          </div>
 			          <%@ include file="../hiddenFields.jspf" %>
+			      </form>
+			      <!-- 대댓글 버튼 toggle -->
+			      <form class="mt-3 d-none" id="replyForm-${value.reviewId}" action="${cPath}/review/insert" method="post">
+		          	  <input type="hidden" id="parentId-${value.reviewId}" name="reviewId" value="${value.reviewId}">
+		          	  <div class="mb-2">
+		          	  	<c:if test="${mvo.profile eq ''}">
+		        			<img src="${cPath}/resources/image/person.png" alt="프로필 사진" class="rounded-circle me-3" width="20" height="20">
+		        		</c:if>
+		        		<c:if test="${mvo.profile ne ''}">
+		        			<img src="${cPath}/resources/upload/${mvo.profile}" alt="프로필 사진" class="rounded-circle me-3" width="20" height="20">
+		        		</c:if>
+		        		${mvo.nick}
+			          </div>
+			          <div class="row mb-2">
+			              <textarea class="form-control" name="comment" rows="3"></textarea>
+			          </div>
+			          <div class="text-end">
+			              <button type="button" class="btn btn-primary btn-sm" data-btn="insertReview">답글</button>
+			          </div>
+			          <input type="hidden" name="viewWriter" value="<c:out value='${mvo.nick}'/>"/>
+		              <%@ include file="../hiddenFields.jspf" %>
+			  		  <input type="hidden" name="rpage" value="<c:out value='${rcri.rpage}'/>"/>
+		              <input type="hidden" name="rperPageNum" value="<c:out value='${rcri.rperPageNum}'/>"/>
 			      </form>  
 		        </div>
 	        </c:otherwise>
@@ -169,7 +192,7 @@
     <div class="modal-content">
       <form id="deleteForm" method="post" action="${cPath}/review/delete">
       	<%@ include file="../hiddenFields.jspf" %>
-        <input type="text" name="reviewId" id="deleteReviewId">
+        <input type="hidden" name="reviewId" id="deleteReviewId">
         <input type="hidden" id="rpage" name="rpage" value="${rpageMaker.rcri.rpage}"/>
       	<input type="hidden" name="rperPageNum" value="${rpageMaker.rcri.rperPageNum}"/>
         <div class="modal-header">

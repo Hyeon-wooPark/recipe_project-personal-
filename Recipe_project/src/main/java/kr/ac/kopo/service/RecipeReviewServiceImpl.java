@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.ac.kopo.mapper.RecipeReviewMapper;
 import kr.ac.kopo.model.RecipeReview;
@@ -16,8 +17,20 @@ public class RecipeReviewServiceImpl implements RecipeReviewService {
 	private RecipeReviewMapper reviewMapper;
 	
 	@Override
+	@Transactional
 	public void insert(RecipeReview vo) {
-		reviewMapper.insert(vo);
+		if(vo.getReviewId() == 0) {
+			reviewMapper.insert(vo);
+			vo.setGroupId(vo.getReviewId());
+			reviewMapper.updateGroupId(vo);
+		} else {
+			RecipeReview parent = reviewMapper.read(vo.getReviewId());
+			vo.setGroupId(parent.getGroupId());
+			vo.setReviewSequence(parent.getReviewSequence() + 1);
+			vo.setBoardLevel(parent.getBoardLevel() + 1);
+			reviewMapper.seqUpdate(vo);
+			reviewMapper.insert(vo);
+		}
 	}
 
 	@Override
@@ -39,5 +52,4 @@ public class RecipeReviewServiceImpl implements RecipeReviewService {
 	public void delete(int reviewId) {
 		reviewMapper.delete(reviewId);
 	}
-
 }
