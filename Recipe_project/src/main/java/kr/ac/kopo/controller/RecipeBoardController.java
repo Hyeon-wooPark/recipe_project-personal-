@@ -32,7 +32,6 @@ public class RecipeBoardController {
 	
 	@RequestMapping("/list")
 	public String list(Criteria cri, Model model) {
-		
 		List<RecipeBoard> list = boardService.list(cri);
 		model.addAttribute("list", list);
 		PageMaker pageMaker = new PageMaker();
@@ -59,9 +58,11 @@ public class RecipeBoardController {
 		model.addAttribute("vo", vo);
 		List<RecipeReview> list = reviewService.list(recipeId, rcri);
 		model.addAttribute("list", list);
+		int totalReview = reviewService.totalReview(recipeId);
+		model.addAttribute("totalReview", totalReview);
 		ReviewPageMaker rpageMaker = new ReviewPageMaker();
 		rpageMaker.setRcri(rcri);
-		rpageMaker.setTotalCount(reviewService.totalCount(recipeId, rcri));
+		rpageMaker.setTotalCount(reviewService.totalGroup(recipeId, rcri));
 		model.addAttribute("rpageMaker", rpageMaker);
 		return "board/get";
 	}

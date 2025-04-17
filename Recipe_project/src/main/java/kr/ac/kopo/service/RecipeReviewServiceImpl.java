@@ -39,8 +39,8 @@ public class RecipeReviewServiceImpl implements RecipeReviewService {
 	}
 
 	@Override
-	public int totalCount(int recipeId, ReviewCriteria rcri) {
-		return reviewMapper.totalCount(recipeId, rcri);
+	public int totalGroup(int recipeId, ReviewCriteria rcri) {
+		return reviewMapper.totalGroup(recipeId, rcri);
 	}
 
 	@Override
@@ -51,5 +51,10 @@ public class RecipeReviewServiceImpl implements RecipeReviewService {
 	@Override
 	public void delete(int reviewId) {
 		reviewMapper.delete(reviewId);
+	}
+
+	@Override
+	public int totalReview(int recipeId) {
+		return reviewMapper.totalReview(recipeId);
 	}
 }

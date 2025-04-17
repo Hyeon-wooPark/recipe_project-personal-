@@ -79,7 +79,7 @@
   	</form>
   </div>
   <div class="list-group list-group-flush">
-  	  <h1>댓글 ${rpageMaker.totalCount}개</h1>
+  	  <h1>댓글 ${totalReview}개</h1>
       <c:forEach var="value" items="${list}">
       	<c:choose>
       		<c:when test="${value.viewAvailable eq 0}">
@@ -92,6 +92,11 @@
 		    <c:otherwise>
 		        <div class="list-group-item d-flex flex-column mb-3">
 		          <div class="d-flex flex-row align-items-center">
+		          	  <c:if test="${value.boardLevel>0}">
+		                <c:forEach begin="1" end="${value.boardLevel}">
+		                  <span style="padding-left: 20px"></span>
+		                </c:forEach>            
+		              </c:if>
 			          <h6 class="mb-1 me-3">
 			          	<c:if test="${value.profile eq ''}">
 			          		<img src="${cPath}/resources/image/person.png" alt="프로필 사진" class="rounded-circle" width="20" height="20">
@@ -112,6 +117,9 @@
 		          </div>
 		          <c:if test="${!empty mvo}">
 			          <div class="mt-2">
+			          	<c:forEach begin="1" end="${value.boardLevel}">
+		                  <span style="padding-left: 20px"></span>
+		                </c:forEach>
 					    <button type="button" class="btn btn-link p-0 text-decoration-none text-black" data-btn="subReply" data-id="${value.reviewId}">
 					      대댓글 ▼
 					    </button>
@@ -119,7 +127,7 @@
 				  </c:if>
 				  <!-- 댓글 수정 버튼 toggle -->
 		          <form class="mt-3 d-none" id="updateForm-${value.reviewId}" action="${cPath}/review/update" method="post">
-		          	  <input type="hidden" id="reviewId" name="reviewId" value="${value.reviewId}">
+		          	  <input type="hidden" id="reviewId-${value.reviewId}" name="reviewId" value="${value.reviewId}">
 			          <div class="row mb-2">
 			              <textarea class="form-control" name="comment" rows="3">${value.comment}</textarea>
 			          </div>

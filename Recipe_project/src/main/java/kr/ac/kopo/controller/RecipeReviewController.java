@@ -21,7 +21,6 @@ public class RecipeReviewController {
 	
 	@RequestMapping("/insert")
 	public String insert(RecipeReview review, @ModelAttribute("cri") Criteria cri, @ModelAttribute("rcri") ReviewCriteria rcri, RedirectAttributes rttr) {
-		
 		reviewService.insert(review);
 		rttr.addAttribute("recipeId" ,review.getRecipeId());
 		rttr.addAttribute("page", cri.getPage());
@@ -33,6 +32,8 @@ public class RecipeReviewController {
 	
 	@PostMapping("/update")
 	public String update(RecipeReview review, @ModelAttribute("cri") Criteria cri, @ModelAttribute("rcri") ReviewCriteria rcri, RedirectAttributes rttr) {
+		System.out.println(review.getReviewId());
+		System.out.println(review.getComment());
 		reviewService.update(review);
 		rttr.addAttribute("recipeId" ,review.getRecipeId());
 		rttr.addAttribute("page", cri.getPage());

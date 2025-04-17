@@ -19,8 +19,8 @@ $(document).ready(function(){
       $("#updateForm-" + id).toggleClass("d-none");
       return;
     } else if(btn=='updateReview') {
-      let rId = $("#reviewId").val();
-      $("#updateForm-" + rId).submit();
+      let form = $(this).closest("form");
+      form.submit();
       return;
     } else if(btn == 'delete') {
       let id = $(this).data("id");

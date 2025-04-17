@@ -36,8 +36,8 @@
 	    <result property="profile" column="profile" />
 	</resultMap>
 	
-	<select id="totalCount" parameterType="reviewCriteria">
-		select count(*) from recipe_review
+	<select id="totalGroup" parameterType="reviewCriteria">
+		select count(distinct group_id) from recipe_review
 		where recipe_id = #{recipeId}
 	</select>
 	
@@ -60,5 +60,10 @@
 	<update id="seqUpdate" parameterType="recipeReview">
 		update recipe_review set review_sequence = review_sequence+1 where group_id = #{groupId} and review_sequence >= #{reviewSequence}
 	</update>
+	
+	<select id="totalReview">
+		select count(*) from recipe_review
+		where recipe_id = #{recipeId}
+	</select>
 	
 </mapper>

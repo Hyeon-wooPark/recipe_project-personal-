@@ -11,9 +11,11 @@ public interface RecipeReviewService {
 	
 	public List<RecipeReview> list(int recipeId, ReviewCriteria rcri);
 	
-	public int totalCount(int recipeId, ReviewCriteria rcri);
+	public int totalGroup(int recipeId, ReviewCriteria rcri);
 	
 	public void update(RecipeReview vo);
 	
 	public void delete(int reviewId);
+	
+	public int totalReview(int recipeId);
 }

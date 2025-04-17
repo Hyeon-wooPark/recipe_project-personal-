@@ -13,7 +13,7 @@ public interface RecipeReviewMapper {
 	
 	public List<RecipeReview> list(@Param("recipeId") int recipeId, @Param("rcri") ReviewCriteria rcri);
 	
-	public int totalCount(@Param("recipeId") int recipeId, @Param("rcri") ReviewCriteria rcri);
+	public int totalGroup(@Param("recipeId") int recipeId, @Param("rcri") ReviewCriteria rcri);
 	
 	public void update(RecipeReview vo);
 	
@@ -24,5 +24,7 @@ public interface RecipeReviewMapper {
 	public void updateGroupId(RecipeReview vo);
 	
 	public void seqUpdate(RecipeReview vo);
+	
+	public int totalReview(int recipeId);
 	
 }
