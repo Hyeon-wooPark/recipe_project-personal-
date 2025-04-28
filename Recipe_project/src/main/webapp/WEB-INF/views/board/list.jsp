@@ -32,33 +32,38 @@
             <th>조회수</th>
           </tr>
         </thead>
-        
-        <c:forEach var="vo" items="${list}">
-          <tr>
-            <td>${vo.recipeId}</td>
-            
-           	<td>
-            	<a class="move" href="${vo.recipeId}">
-            		<c:out value='${vo.title}'/>
-            	</a>
-            </td>
-                    
-            <c:if test="${vo.profile eq ''}">
-	        	<td><img src="${cPath}/resources/image/person.png" alt="프로필 사진" class="rounded-circle me-3" width="30" height="30">${vo.writer}</td>
-	        </c:if>
-            <c:if test="${vo.profile ne ''}">
-            	<td><img src="${cPath}/resources/upload/${vo.profile}" alt="프로필 사진" class="rounded-circle me-3" width="30" height="30">${vo.writer}</td>
-            </c:if>
-            <c:if test="${vo.createDate eq vo.updateDate}">
-            	<td>${vo.createDate}</td>
-            </c:if>
-            <c:if test="${vo.createDate ne vo.updateDate}">
-            	<td>${vo.updateDate}</td>
-            </c:if>
-            <td>${vo.count}</td>
-          </tr>
-        </c:forEach>
-        
+        <c:if test="${empty list}">
+        	<tr>
+        		<td colspan="5">등록된 게시글이 없습니다.</td>
+        	</tr>
+        </c:if>
+        <c:if test="${!empty list}">
+	        <c:forEach var="vo" items="${list}">
+	          <tr>
+	            <td>${vo.recipeId}</td>
+	            
+	           	<td>
+	            	<a class="move" href="${vo.recipeId}">
+	            		<c:out value='${vo.title}'/>
+	            	</a>
+	            </td>
+	                    
+	            <c:if test="${vo.profile eq ''}">
+		        	<td><img src="${cPath}/resources/image/person.png" alt="프로필 사진" class="rounded-circle me-3" width="30" height="30">${vo.writer}</td>
+		        </c:if>
+	            <c:if test="${vo.profile ne ''}">
+	            	<td><img src="${cPath}/resources/upload/${vo.profile}" alt="프로필 사진" class="rounded-circle me-3" width="30" height="30">${vo.writer}</td>
+	            </c:if>
+	            <c:if test="${vo.createDate eq vo.updateDate}">
+	            	<td>${vo.createDate}</td>
+	            </c:if>
+	            <c:if test="${vo.createDate ne vo.updateDate}">
+	            	<td>${vo.updateDate}</td>
+	            </c:if>
+	            <td>${vo.count}</td>
+	          </tr>
+	        </c:forEach>
+        </c:if>
         <c:if test="${!empty mvo}"> 
 	        <tr>
 	          <td colspan="5" class="text-end">

@@ -28,8 +28,13 @@ $(document).ready(function(){
       $("#deleteModal").modal("show");
       return;
     } else if(btn == 'subReply') {
-      let id = $(this).data("id");
-      $("#replyForm-" + id).toggleClass("d-none");
+      let parentId = $(this).data("id");
+      let targetId = $(this).data("next-id");
+      console.log(targetId);
+      $("#replyForm-" + parentId).toggleClass("d-none");
+      if(targetId) {
+        $("#replyForm-" + parentId).find('input[name="nextReviewId"]').val(targetId);
+      }
       return;
     } else if(btn == 'insertReview') {
       let form = $(this).closest("form");

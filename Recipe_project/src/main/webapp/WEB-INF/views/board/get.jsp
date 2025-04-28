@@ -120,9 +120,11 @@
 			          	<c:forEach begin="1" end="${value.boardLevel}">
 		                  <span style="padding-left: 20px"></span>
 		                </c:forEach>
-					    <button type="button" class="btn btn-link p-0 text-decoration-none text-black" data-btn="subReply" data-id="${value.reviewId}">
+					    <button type="button" class="btn btn-link p-0 text-decoration-none text-black" 
+					    data-btn="subReply" data-id="${value.reviewId}" data-next-id="${value.nextReviewId}">
 					      대댓글 ▼
 					    </button>
+					    <input type="text" value="${value.nextReviewId}">
 					  </div>
 				  </c:if>
 				  <!-- 댓글 수정 버튼 toggle -->
@@ -154,6 +156,7 @@
 			          <div class="text-end">
 			              <button type="button" class="btn btn-primary btn-sm" data-btn="insertReview">답글</button>
 			          </div>
+			          <input type="hidden" name="nextReviewId" value=""/>
 			          <input type="hidden" name="viewWriter" value="<c:out value='${mvo.nick}'/>"/>
 		              <%@ include file="../hiddenFields.jspf" %>
 			  		  <input type="hidden" name="rpage" value="<c:out value='${rcri.rpage}'/>"/>

@@ -23,8 +23,14 @@ public interface RecipeReviewMapper {
 	
 	public void updateGroupId(RecipeReview vo);
 	
-	public void seqUpdate(RecipeReview vo);
+	//public void seqUpdate(RecipeReview vo);
 	
 	public int totalReview(int recipeId);
+	
+	public int getMaxSeq(int groupId);
+	
+	public void reSeq(RecipeReview vo);
+	
+	public boolean existSeq(RecipeReview vo);
 	
 }

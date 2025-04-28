@@ -9,4 +9,6 @@ public interface QueryBoardService {
 	public List<QueryBoard> list(Criteria cri);
 	
 	public int totalCount(Criteria cri);
+	
+	public void insert(QueryBoard vo);
 }

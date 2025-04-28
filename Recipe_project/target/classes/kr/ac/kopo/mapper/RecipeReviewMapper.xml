@@ -18,7 +18,7 @@
 		join recipe_board rb on rr.recipe_id = rb.recipe_id
 		join user u on rb.user_id = u.user_id
 		where rr.recipe_id = #{recipeId}
-		order by group_id desc, review_sequence
+		order by group_id desc, review_sequence asc
 		limit #{rcri.rpageStart}, #{rcri.rperPageNum}
 	</select>
 	
@@ -57,13 +57,36 @@
 		update recipe_review set group_id = #{groupId} where review_id=#{reviewId}
 	</update>
 	
-	<update id="seqUpdate" parameterType="recipeReview">
+	<!-- <update id="seqUpdate" parameterType="recipeReview">
 		update recipe_review set review_sequence = review_sequence+1 where group_id = #{groupId} and review_sequence >= #{reviewSequence}
-	</update>
+	</update> -->
 	
 	<select id="totalReview">
 		select count(*) from recipe_review
 		where recipe_id = #{recipeId}
 	</select>
 	
+	<select id="getMaxSeq">
+		select max(review_sequence) from recipe_review
+		where group_id = #{groupId}
+	</select>
+	
+	<update id="reSeq">
+		update recipe_review set review_sequence = review_sequence+1 
+		where group_id = #{groupId} and review_sequence >= #{reviewSequence}
+	</update>
+	
+	<select id="getPrevSeqBefore" parameterType="recipeReview" resultType="java.lang.Integer">
+		select max(review_sequence)
+		from recipe_review
+		where group_id = #{groupId} and review_sequence &lt; #{reviewSequence}
+	</select>
+	
+	<select id="existSeq">
+		select exists (
+			select 1
+			from recipe_review
+			where group_id = #{groupId} and review_sequence = #{reviewSequence}
+		)
+	</select>
 </mapper>

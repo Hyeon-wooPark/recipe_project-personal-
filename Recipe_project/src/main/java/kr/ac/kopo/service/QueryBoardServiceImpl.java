@@ -25,4 +25,9 @@ public class QueryBoardServiceImpl implements QueryBoardService {
 		return boardMapper.totalCount(cri);
 	}
 
+	@Override
+	public void insert(QueryBoard vo) {
+		boardMapper.insert(vo);
+	}
+
 }

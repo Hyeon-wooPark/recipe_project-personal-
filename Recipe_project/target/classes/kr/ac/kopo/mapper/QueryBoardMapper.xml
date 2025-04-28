@@ -4,13 +4,55 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.ac.kopo.mapper.QueryBoardMapper">
 	
-	<select id="list" resultType="queryBoard" parameterType="criteria">
-		select * from query_board
+	<sql id="search">
+	  	<if test="type=='writer'">
+	  		where writer like concat('%',#{keyword},'%')
+	  	</if>
+	  	<if test="type=='title'">
+	  		where title like concat('%',#{keyword},'%')
+	  	</if>
+	  	<if test="type=='content'">
+	  		where content like concat('%',#{keyword},'%')
+	  	</if>
+	</sql>
+	
+	<select id="list" resultMap="queryWithProfile" parameterType="criteria">
+		select q.*, u.profile
+		from query_board q
+		join user u on q.query_user_id = u.user_id
+		<include refid="search"/>
+		<if test="type != null">
+	    	and available = 1
+		</if>
+		<if test="type == null">
+		    where available = 1
+		</if> 
 		order by query_id desc
 		limit #{pageStart}, #{perPageNum}
 	</select>
 	
+	<resultMap type="queryBoard" id="queryWithProfile">
+		<id property="queryId" column="query_id"/>
+		<result property="queryUserId" column="query_user_id"/>
+	    <result property="title" column="title"/>
+	    <result property="content" column="content"/>
+	    <result property="writer" column="writer"/>
+	    <result property="createDate" column="create_date"/>
+	    <result property="updateDate" column="update_date"/>
+	    <result property="available" column="available"/>
+	    <result property="count" column="count"/>
+	    <result property="profile" column="profile"/>
+	</resultMap>
+	
 	<select id="totalCount" parameterType="criteria">
 		select count(*) from query_board
+		<include refid="search"/>
 	</select>
+	
+	<insert id="insert" parameterType="queryBoard">
+		insert into query_board
+		(query_user_id, title, content, writer)
+		values
+		(#{queryUserId}, #{title}, #{content}, #{writer})
+	</insert>
 </mapper>

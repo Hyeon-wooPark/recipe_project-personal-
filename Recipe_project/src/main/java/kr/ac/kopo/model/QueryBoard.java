@@ -18,6 +18,10 @@ public class QueryBoard {
 	private LocalDate updateDate;
 	
 	private int available;
+	
+	private int count;
+	
+	private String profile;
 
 	public int getQueryId() {
 		return queryId;
@@ -81,5 +85,21 @@ public class QueryBoard {
 
 	public void setAvailable(int available) {
 		this.available = available;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
 }

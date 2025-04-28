@@ -26,6 +26,8 @@ public class RecipeReview {
 	
 	private String profile;
 	
+	private Integer nextReviewId;
+	
 	public int getReviewId() {
 		return reviewId;
 	}
@@ -112,6 +114,14 @@ public class RecipeReview {
 
 	public void setProfile(String profile) {
 		this.profile = profile;
+	}
+
+	public Integer getNextReviewId() {
+		return nextReviewId;
+	}
+
+	public void setNextReviewId(Integer nextReviewId) {
+		this.nextReviewId = nextReviewId;
 	}
 
 }
