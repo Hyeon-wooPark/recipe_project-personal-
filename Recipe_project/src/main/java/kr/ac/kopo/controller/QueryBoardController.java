@@ -49,4 +49,10 @@ public class QueryBoardController {
 	public @ResponseBody Map<String, Object> getQuery(int queryId) {
 		return boardService.getQuery(queryId);
 	}
+	
+	@PostMapping("/update")
+	public @ResponseBody String update(QueryBoard vo) {
+		boardService.update(vo);
+		return "success";
+	}
 }

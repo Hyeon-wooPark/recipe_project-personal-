@@ -44,4 +44,9 @@ public class QueryBoardServiceImpl implements QueryBoardService {
 		return result;
 	}
 
+	@Override
+	public void update(QueryBoard vo) {
+		boardMapper.update(vo);
+	}
+
 }

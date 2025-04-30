@@ -14,4 +14,6 @@ public interface QueryBoardService {
 	public void insert(QueryBoard vo);
 	
 	public Map<String, Object> getQuery(int queryId);
+	
+	public void update(QueryBoard vo);
 }

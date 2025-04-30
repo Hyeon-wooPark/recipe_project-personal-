@@ -64,4 +64,8 @@
 	<update id="countUp">
 		update query_board set count = count + 1 where query_id = #{queryId}
 	</update>
+	
+	<update id="update" parameterType="queryBoard">
+		update query_board set content = #{content} where query_id = #{queryId}
+	</update>
 </mapper>

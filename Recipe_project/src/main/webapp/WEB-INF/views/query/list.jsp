@@ -61,10 +61,10 @@
 				          <tr class="collapse" id="collapse${vo.queryId}">
 				          	<td>내용</td>
 				          	<td colspan="4">
-				          		<textarea id="content${vo.queryId}" rows="4" class="form-control mb-2" readonly="readonly"></textarea>
+				          		<textarea id="content${vo.queryId}" rows="4" class="form-control mb-2" readonly="readonly" data-original=""></textarea>
 				          		<div class="text-end">
-				          			<button type="button" class="editBtn${vo.queryId} btn btn-sm btn-warning d-none">수정</button>
-				          			<button type="button" class="editBtn${vo.queryId} btn btn-sm btn-danger d-none">삭제</button>
+				          			<button type="button" class="editBtn btn btn-sm btn-warning d-none" data-id="${vo.queryId}">수정</button>
+				          			<button type="button" class="deleteBtn btn btn-sm btn-danger d-none" data-id="${vo.queryId}">삭제</button>
 				          		</div>
 				          	</td>
 				          </tr>

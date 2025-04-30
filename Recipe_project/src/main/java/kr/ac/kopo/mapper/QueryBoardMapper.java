@@ -16,4 +16,6 @@ public interface QueryBoardMapper {
 	public QueryBoard getQuery(int queryId);
 	
 	public void countUp(int queryId);
+	
+	public void update(QueryBoard vo);
 }
