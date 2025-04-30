@@ -13,5 +13,7 @@ public interface QueryBoardMapper {
 	
 	public void insert(QueryBoard vo);
 	
-	public String getQuery(int queryId);
+	public QueryBoard getQuery(int queryId);
+	
+	public void countUp(int queryId);
 }

@@ -1,6 +1,7 @@
 package kr.ac.kopo.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,8 +45,8 @@ public class QueryBoardController {
 		return "redirect:/query/list";
 	}
 	
-	@GetMapping(value = "/getQuery", produces = "text/plain; charset=UTF-8")
-	public @ResponseBody String getQuery(int queryId) {
+	@GetMapping(value = "/getQuery", produces = "application/json; charset=UTF-8")
+	public @ResponseBody Map<String, Object> getQuery(int queryId) {
 		return boardService.getQuery(queryId);
 	}
 }

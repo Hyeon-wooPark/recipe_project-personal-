@@ -56,8 +56,12 @@
 		(#{queryUserId}, #{title}, #{content}, #{writer})
 	</insert>
 	
-	<select id="getQuery">
-		select content from query_board
+	<select id="getQuery" resultType="queryBoard">
+		select content, count from query_board
 		where query_id = #{queryId}
 	</select>
+	
+	<update id="countUp">
+		update query_board set count = count + 1 where query_id = #{queryId}
+	</update>
 </mapper>

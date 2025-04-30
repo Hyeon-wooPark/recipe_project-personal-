@@ -56,7 +56,7 @@
 				            <c:if test="${vo.createDate ne vo.updateDate}">
 				            	<td>${vo.updateDate}</td>
 				            </c:if>
-				            <td>${vo.count}</td>
+				            <td id="count${vo.queryId}">${vo.count}</td>
 				          </tr>
 				          <tr class="collapse" id="collapse${vo.queryId}">
 				          	<td>내용</td>
@@ -66,11 +66,13 @@
 				          </tr>
 				        </c:forEach>
 			        </c:if>
+			        <c:if test="${!empty mvo}">
 				        <tr>
 				          <td colspan="5" class="text-end">
 				            <button id="regBtn" style="font-weight: bold;" class="btn btn-sm btn-info">글쓰기</button>            
 				          </td>
 				        </tr>
+				    </c:if>
 			      </table>
 			      <!-- 검색메뉴 -->
 			      <div class="d-flex justify-content-center mb-3">

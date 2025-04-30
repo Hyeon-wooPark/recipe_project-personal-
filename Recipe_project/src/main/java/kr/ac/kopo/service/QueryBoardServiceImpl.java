@@ -1,6 +1,8 @@
 package kr.ac.kopo.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,8 +33,15 @@ public class QueryBoardServiceImpl implements QueryBoardService {
 	}
 
 	@Override
-	public String getQuery(int queryId) {
-		return boardMapper.getQuery(queryId);
+	public Map<String, Object> getQuery(int queryId) {
+		boardMapper.countUp(queryId);
+		String content = boardMapper.getQuery(queryId).getContent();
+		int count = boardMapper.getQuery(queryId).getCount();
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("content", content);
+		result.put("count", count);
+		return result;
 	}
 
 }
