@@ -40,11 +40,10 @@
 				          <tr>
 				            <td>${vo.queryId}</td>
 				           	<td>
-				            	<a class="move" href="${vo.queryId}">
+				            	<a class="move" href="#collapse${vo.queryId}" data-bs-toggle="collapse" data-id="${vo.queryId}" role="button" aria-expanded="false" aria-controls="collapse${vo.queryId}">
 				            		<c:out value='${vo.title}'/>
 				            	</a>
 				            </td>
-				                    
 				            <c:if test="${vo.profile eq ''}">
 					        	<td><img src="${cPath}/resources/image/person.png" alt="프로필 사진" class="rounded-circle me-3" width="30" height="30">${vo.writer}</td>
 					        </c:if>
@@ -59,15 +58,19 @@
 				            </c:if>
 				            <td>${vo.count}</td>
 				          </tr>
+				          <tr class="collapse" id="collapse${vo.queryId}">
+				          	<td>내용</td>
+				          	<td colspan="4">
+				          		<textarea id="content${vo.queryId}" rows="4" class="form-control" readonly="readonly"></textarea>
+				          	</td>
+				          </tr>
 				        </c:forEach>
 			        </c:if>
-			         
 				        <tr>
 				          <td colspan="5" class="text-end">
 				            <button id="regBtn" style="font-weight: bold;" class="btn btn-sm btn-info">글쓰기</button>            
 				          </td>
 				        </tr>
-			        
 			      </table>
 			      <!-- 검색메뉴 -->
 			      <div class="d-flex justify-content-center mb-3">

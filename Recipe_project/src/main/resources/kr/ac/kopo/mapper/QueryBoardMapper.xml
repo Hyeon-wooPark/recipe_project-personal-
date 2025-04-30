@@ -55,4 +55,9 @@
 		values
 		(#{queryUserId}, #{title}, #{content}, #{writer})
 	</insert>
+	
+	<select id="getQuery">
+		select content from query_board
+		where query_id = #{queryId}
+	</select>
 </mapper>

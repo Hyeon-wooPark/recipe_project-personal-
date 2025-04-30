@@ -30,4 +30,9 @@ public class QueryBoardServiceImpl implements QueryBoardService {
 		boardMapper.insert(vo);
 	}
 
+	@Override
+	public String getQuery(int queryId) {
+		return boardMapper.getQuery(queryId);
+	}
+
 }

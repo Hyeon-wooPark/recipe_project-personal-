@@ -11,4 +11,6 @@ public interface QueryBoardService {
 	public int totalCount(Criteria cri);
 	
 	public void insert(QueryBoard vo);
+	
+	public String getQuery(int queryId);
 }

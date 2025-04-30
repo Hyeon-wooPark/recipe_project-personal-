@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.kopo.model.Criteria;
 import kr.ac.kopo.model.PageMaker;
@@ -41,5 +42,10 @@ public class QueryBoardController {
 	public String insert(QueryBoard vo) {
 		boardService.insert(vo);
 		return "redirect:/query/list";
+	}
+	
+	@GetMapping(value = "/getQuery", produces = "text/plain; charset=UTF-8")
+	public @ResponseBody String getQuery(int queryId) {
+		return boardService.getQuery(queryId);
 	}
 }
