@@ -7,6 +7,7 @@ $(document).ready(function() {
     let queryId = $(this).data("id");
     let $textarea = $("#content" + queryId);
     let $countId = $("#count" + queryId);
+    let $editBtn = $(".editBtn" + queryId);
 
     if($textarea.val().trim() !== "") return;
 
@@ -16,9 +17,9 @@ $(document).ready(function() {
       data : {queryId : queryId},
       dataType : "json",
       success : function(res) {
-        console.log(res);
         $textarea.val(res.content);
         $countId.text(res.count);
+        $editBtn.removeClass("d-none");
       },
       error : function() {
         $textarea.val("내용을 불러오는 데 실패했습니다.");

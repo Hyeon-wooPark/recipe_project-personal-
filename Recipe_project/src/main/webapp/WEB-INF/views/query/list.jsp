@@ -61,7 +61,11 @@
 				          <tr class="collapse" id="collapse${vo.queryId}">
 				          	<td>내용</td>
 				          	<td colspan="4">
-				          		<textarea id="content${vo.queryId}" rows="4" class="form-control" readonly="readonly"></textarea>
+				          		<textarea id="content${vo.queryId}" rows="4" class="form-control mb-2" readonly="readonly"></textarea>
+				          		<div class="text-end">
+				          			<button type="button" class="editBtn${vo.queryId} btn btn-sm btn-warning d-none">수정</button>
+				          			<button type="button" class="editBtn${vo.queryId} btn btn-sm btn-danger d-none">삭제</button>
+				          		</div>
 				          	</td>
 				          </tr>
 				        </c:forEach>
