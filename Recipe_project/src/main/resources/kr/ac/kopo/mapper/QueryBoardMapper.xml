@@ -68,4 +68,8 @@
 	<update id="update" parameterType="queryBoard">
 		update query_board set content = #{content} where query_id = #{queryId}
 	</update>
+	
+	<update id="delete">
+		update query_board set available = 0 where query_id = #{queryId}
+	</update>
 </mapper>

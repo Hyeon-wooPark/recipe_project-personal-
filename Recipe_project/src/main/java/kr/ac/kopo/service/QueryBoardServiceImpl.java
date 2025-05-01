@@ -49,4 +49,9 @@ public class QueryBoardServiceImpl implements QueryBoardService {
 		boardMapper.update(vo);
 	}
 
+	@Override
+	public void delete(int queryId) {
+		boardMapper.delete(queryId);
+	}
+
 }

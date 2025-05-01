@@ -55,4 +55,10 @@ public class QueryBoardController {
 		boardService.update(vo);
 		return "success";
 	}
+	
+	@PostMapping("/delete")
+	public @ResponseBody String delete(int queryId) {
+		boardService.delete(queryId);
+		return "success";
+	}
 }

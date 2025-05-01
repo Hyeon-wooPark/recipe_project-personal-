@@ -62,10 +62,12 @@
 				          	<td>내용</td>
 				          	<td colspan="4">
 				          		<textarea id="content${vo.queryId}" rows="4" class="form-control mb-2" readonly="readonly" data-original=""></textarea>
-				          		<div class="text-end">
-				          			<button type="button" class="editBtn btn btn-sm btn-warning d-none" data-id="${vo.queryId}">수정</button>
-				          			<button type="button" class="deleteBtn btn btn-sm btn-danger d-none" data-id="${vo.queryId}">삭제</button>
-				          		</div>
+				          		<c:if test="${mvo.userId eq vo.queryUserId}">
+					          		<div class="text-end">
+					          			<button type="button" class="editBtn btn btn-sm btn-warning d-none" data-id="${vo.queryId}">수정</button>
+					          			<button type="button" class="deleteBtn btn btn-sm btn-danger d-none" data-id="${vo.queryId}">삭제</button>
+					          		</div>
+				          		</c:if>
 				          	</td>
 				          </tr>
 				        </c:forEach>
@@ -127,7 +129,26 @@
 			</div>
 		</div>
 	</div>
-
-
+<!-- 삭제 확인 모달 -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <form id="deleteForm" method="post" action="${cPath}/query/delete">
+        <input type="hidden" name="queryId" id="deleteQueryId">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">게시글 삭제</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
+        </div>
+        <div class="modal-body">
+          정말 삭제하시겠습니까?
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-sm">예</button>
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">아니오</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 </body>
 </html>

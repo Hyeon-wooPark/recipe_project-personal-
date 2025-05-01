@@ -38,8 +38,10 @@ $(document).ready(function() {
     let $textarea = $("#content" + queryId);
     let $editBtn = $(".editBtn[data-id='" + queryId + "']");
   
-    $textarea.val($textarea.data("original"));
-    $textarea.prop("readonly", true);
+    $textarea
+      .val($textarea.data("original"))
+      .prop("readonly", true)
+      .data("loaded", false);
   
     $editBtn.text("수정");
   });
@@ -74,5 +76,32 @@ $(document).ready(function() {
         }
       });
     }
+  });
+
+  $(document).on("click", ".deleteBtn", function() {
+    let queryId = $(this).data("id");
+    $("#deleteQueryId").val(queryId);
+    $("#deleteModal").modal("show");
+  });
+
+  $(document).on("submit", "#deleteForm", function(e) {
+    e.preventDefault();
+
+    let queryId = $("#deleteQueryId").val();
+
+    $.ajax({
+      url: cPath + "/query/delete",
+      method: "post",
+      data: { queryId: queryId },
+      success: function() {
+        $("#collapse" + queryId).closest("tr").prev().remove();
+        $("#collapse" + queryId).remove();
+        $("#deleteModal").modal("hide");
+        alert("삭제되었습니다.");
+      },
+      error: function() {
+        alert("삭제에 실패했습니다.");
+      }
+    });
   });
 });

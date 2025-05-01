@@ -18,4 +18,6 @@ public interface QueryBoardMapper {
 	public void countUp(int queryId);
 	
 	public void update(QueryBoard vo);
+	
+	public void delete(int queryId);
 }
