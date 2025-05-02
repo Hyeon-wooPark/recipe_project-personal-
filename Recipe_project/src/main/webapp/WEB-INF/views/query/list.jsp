@@ -59,15 +59,24 @@
 				            <td id="count${vo.queryId}">${vo.count}</td>
 				          </tr>
 				          <tr class="collapse" id="collapse${vo.queryId}">
-				          	<td>내용</td>
+				          	<td></td>
 				          	<td colspan="4">
-				          		<textarea id="content${vo.queryId}" rows="4" class="form-control mb-2" readonly="readonly" data-original=""></textarea>
-				          		<c:if test="${mvo.userId eq vo.queryUserId}">
-					          		<div class="text-end">
-					          			<button type="button" class="editBtn btn btn-sm btn-warning d-none" data-id="${vo.queryId}">수정</button>
-					          			<button type="button" class="deleteBtn btn btn-sm btn-danger d-none" data-id="${vo.queryId}">삭제</button>
+				          		<div class="p-3 border rounded bg-light">
+					          		<div class="mb-3">
+					          			<label for="title${vo.queryId}" class="form-label fw-bold text-primary">제목</label>
+					          			<input type="text" id="title${vo.queryId}" class="form-control" readonly="readonly" data-original="${vo.title}" value="${vo.title}">
 					          		</div>
-				          		</c:if>
+					          		<div class="mb-3">
+					          			<label for="content${vo.queryId}" class="form-label fw-bold text-success">내용</label>
+					          			<textarea id="content${vo.queryId}" rows="4" class="form-control" readonly="readonly" data-original=""></textarea>
+					          		</div>
+					          		<c:if test="${mvo.userId eq vo.queryUserId}">
+						          		<div class="text-end">
+						          			<button type="button" class="editBtn btn btn-sm btn-warning d-none" data-id="${vo.queryId}">수정</button>
+						          			<button type="button" class="deleteBtn btn btn-sm btn-danger d-none" data-id="${vo.queryId}">삭제</button>
+						          		</div>
+					          		</c:if>
+				          		</div>
 				          	</td>
 				          </tr>
 				        </c:forEach>

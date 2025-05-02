@@ -35,10 +35,12 @@ public class QueryBoardServiceImpl implements QueryBoardService {
 	@Override
 	public Map<String, Object> getQuery(int queryId) {
 		boardMapper.countUp(queryId);
+		String title = boardMapper.getQuery(queryId).getTitle();
 		String content = boardMapper.getQuery(queryId).getContent();
 		int count = boardMapper.getQuery(queryId).getCount();
 		
 		Map<String, Object> result = new HashMap<>();
+		result.put("title", title);
 		result.put("content", content);
 		result.put("count", count);
 		return result;

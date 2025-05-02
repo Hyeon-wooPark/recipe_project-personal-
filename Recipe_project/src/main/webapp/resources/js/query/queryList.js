@@ -5,6 +5,7 @@ $(document).ready(function() {
 
   $(".move").on("click", function(e){
     let queryId = $(this).data("id");
+    let $titleInput = $("#title" + queryId);
     let $textarea = $("#content" + queryId);
     let $countId = $("#count" + queryId);
     let $editBtn = $(".editBtn[data-id='" + queryId + "']");
@@ -21,6 +22,10 @@ $(document).ready(function() {
       data : {queryId : queryId},
       dataType : "json",
       success : function(res) {
+        $titleInput
+          .val(res.title)
+          .data("original", res.title);
+
         $textarea
           .val(res.content)
           .data("original", res.content) 
@@ -35,9 +40,14 @@ $(document).ready(function() {
 
   $('.collapse').on('hidden.bs.collapse', function () {
     let queryId = $(this).attr("id").replace("collapse", "");
+    let $titleInput = $("#title" + queryId);
     let $textarea = $("#content" + queryId);
     let $editBtn = $(".editBtn[data-id='" + queryId + "']");
   
+    $titleInput
+      .val($titleInput.data("original"))
+      .prop("readonly", true);
+
     $textarea
       .val($textarea.data("original"))
       .prop("readonly", true)
@@ -48,13 +58,16 @@ $(document).ready(function() {
 
   $(document).on("click", ".editBtn", function() {
     let queryId = $(this).data("id");
+    let $titleInput = $("#title" + queryId);
     let $textarea = $("#content" + queryId);
     let $btn = $(this);
   
     if ($textarea.prop("readonly")) {
+      $titleInput.prop("readonly", false);
       $textarea.prop("readonly", false).focus();
       $btn.text("저장");
     } else {
+      let title = $titleInput.val();
       let content = $textarea.val();
   
       $.ajax({
@@ -62,12 +75,17 @@ $(document).ready(function() {
         method: "post",
         data: {
           queryId: queryId,
+          title : title,
           content: content
         },
         success: function() {
+          $titleInput
+            .prop("readonly", true)
+            .data("original", title);
           $textarea
             .prop("readonly", true)
             .data("original", content);
+          $("a[data-id='" + queryId + "']").text(title);
           $btn.text("수정");
           alert("수정이 완료되었습니다.");
         },
@@ -95,7 +113,7 @@ $(document).ready(function() {
       data: { queryId: queryId },
       success: function() {
         $("#collapse" + queryId).closest("tr").prev().remove();
-        $("#collapse" + queryId).remove();
+        $("#collapse" + queryId).fadeOut();
         $("#deleteModal").modal("hide");
         alert("삭제되었습니다.");
       },

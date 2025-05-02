@@ -57,7 +57,7 @@
 	</insert>
 	
 	<select id="getQuery" resultType="queryBoard">
-		select content, count from query_board
+		select title, content, count from query_board
 		where query_id = #{queryId}
 	</select>
 	
@@ -66,7 +66,7 @@
 	</update>
 	
 	<update id="update" parameterType="queryBoard">
-		update query_board set content = #{content} where query_id = #{queryId}
+		update query_board set title = #{title}, content = #{content} where query_id = #{queryId}
 	</update>
 	
 	<update id="delete">
