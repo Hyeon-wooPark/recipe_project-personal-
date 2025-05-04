@@ -122,4 +122,15 @@ $(document).ready(function() {
       }
     });
   });
+
+  var pageFrm=$("#pageFrm");
+  $(".pagination").on("click", ".page-link", function(e){
+    e.preventDefault();
+
+    const page=$(this).attr("href");
+    if(!isNaN(page)) {
+      pageFrm.find("#page").val(page);
+      pageFrm.submit();
+    }		
+  });
 });
