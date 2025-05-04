@@ -16,6 +16,7 @@
   <script src="${cPath}/resources/js/query/queryList.js"></script>
 </head>
 <body>
+	<jsp:include page="../main/nav.jsp"></jsp:include>
 	<div class="container mt-3">
 		<h1>문의 게시판</h1>
 		<div class="card">
@@ -159,5 +160,6 @@
     </div>
   </div>
 </div>
+<jsp:include page="../main/footer.jsp"></jsp:include>
 </body>
 </html>

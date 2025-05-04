@@ -16,7 +16,7 @@
   <script src="${cPath}/resources/js/board/boardList.js"></script>
 </head>
 <body>
- 
+	<jsp:include page="../main/nav.jsp"></jsp:include>
 <div class="container mt-3">
   
   <h1>레시피 게시판</h1>
@@ -122,6 +122,6 @@
     </div>
   </div>
 </div>
-
+<jsp:include page="../main/footer.jsp"></jsp:include>
 </body>
 </html>

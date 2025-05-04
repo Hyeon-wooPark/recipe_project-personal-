@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="${cPath}/resources/css/brand.css">
 </head>
 <body>
+	<jsp:include page="nav.jsp"></jsp:include>
 	<section>
 		<h1>브랜드 소개</h1>
 		<div>
